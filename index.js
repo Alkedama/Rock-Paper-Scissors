@@ -15,8 +15,8 @@ let getComputerChoice = () => {
     }
 }
 
-function playerSelection(){
-    let answer = prompt("Choose Rock, Paper or Scissors");
+function playerSelection() {
+    let answer = prompt("You have 5 rounds. Choose Rock, Paper or Scissors");
     let trueAnswer = answer.charAt(0).toUpperCase() + answer.slice(1).toLowerCase();
 
     return trueAnswer;
@@ -42,59 +42,80 @@ let playRound = (playerSelection, computerSelection) => {
     if (playerSelection == "Rock" && computerSelection == "Rock") {
         console.log(`You play ${playerSelection}`);
         console.log(`Opponent plays ${computerSelection}`);
-        console.log("Tie");
+        return "Tie";
     } else if (playerSelection == "Rock" && computerSelection == "Paper") {
         console.log(`You play ${playerSelection}`);
         console.log(`Opponent plays ${computerSelection}`);
-        console.log("You lose");
+        return "You Lose"
     } else if (playerSelection == "Rock" && computerSelection == "Scissors") {
         console.log(`You play ${playerSelection}`);
         console.log(`Opponent plays ${computerSelection}`);
-        console.log("You win");
+        return "You Win"
     } else if (playerSelection == "Paper" && computerSelection == "Rock") {
         console.log(`You play ${playerSelection}`);
         console.log(`Opponent plays ${computerSelection}`);
-        console.log("You win");
+        return "You Win"
     } else if (playerSelection == "Paper" && computerSelection == "Paper") {
         console.log(`You play ${playerSelection}`);
         console.log(`Opponent plays ${computerSelection}`);
-        console.log("Tie");
+        return "Tie"
     } else if (playerSelection == "Paper" && computerSelection == "Scissors") {
         console.log(`You play ${playerSelection}`);
         console.log(`Opponent plays ${computerSelection}`);
-        console.log("You lose");
+        return "You Lose"
     } else if (playerSelection == "Scissors" && computerSelection == "Rock") {
         console.log(`You play ${playerSelection}`);
         console.log(`Opponent plays ${computerSelection}`);
-        console.log("You lose");
+        return "You Lose"
     } else if (playerSelection == "Scissors" && computerSelection == "Paper") {
         console.log(`You play ${playerSelection}`);
         console.log(`Opponent plays ${computerSelection}`);
-        console.log("You win");
+        return "You Win"
     } else if (playerSelection == "Scissors" && computerSelection == "Scissors") {
         console.log(`You play ${playerSelection}`);
         console.log(`Opponent plays ${computerSelection}`);
-        console.log("Tie");
+        return "Tie"
     } else {
         console.log(`You play ${playerSelection}`);
         console.log(`Opponent plays ${computerSelection}`);
-        console.log("Invalid Input. Play again.");
-        playRound();
-       
+        return "Invalid Input. Try Again.";
     }
 
-   
 
 }
 
-playRound(playerSelection(), computerSelection());
+let winCounter = 0;
+let loseCounter = 0;
+let tieCounter = 0;
 
-// console.log(playRound("rock", getComputerChoice()));
+for (let index = 1; index <= 5; index++) {
 
-// console.log(getComputerChoice());
+    let returnPlayRound = playRound(playerSelection(), computerSelection());
 
-let game = () => {
-    playerSelection();
+    if (returnPlayRound == "Invalid Input. Try Again.") {
+        index--;
+        console.log(returnPlayRound);
+        while (returnPlayRound == "Invalid Input. Try Again.") {
+            returnPlayRound = playRound(playerSelection(), computerSelection());
+            console.log(returnPlayRound);
+        }
+    } else if (returnPlayRound == "You Lose") {
+        loseCounter++;
+        console.log(returnPlayRound);
+    } else if (returnPlayRound == "You Win") {
+        winCounter++;
+        console.log(returnPlayRound);
+    } else if (returnPlayRound == "Tie") {
+        tieCounter++;
+        console.log(returnPlayRound);
+    }
+
+    
 }
+console.log(`You won by ${winCounter} times, lost by ${loseCounter} times and tied by ${tieCounter} times.`);
+if (winCounter > loseCounter) {
+console.log(`Congratulations! You won by ${winCounter} times.`);
+} else if (loseCounter > winCounter) {
+console.log(`Sorry, you lost by ${loseCounter} times. Better luck next time.`);
+} else {}
 
-// game();

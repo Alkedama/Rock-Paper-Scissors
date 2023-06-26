@@ -38,17 +38,11 @@ let computerSelection = () => {
 const resultContainer = document.querySelector(".resultContainer");
 
 const resultSpan = document.createElement("p");
-const playerSelectSpan = document.createElement("span");
-const computerSelectSpan = document.createElement("span");
 const endResultSpan = document.createElement("span");
 const roundCounterSpan = document.createElement("span");
 
-
-
 resultContainer.appendChild(roundCounterSpan);
 let result = resultContainer.appendChild(resultSpan);
-let playerSelect = resultContainer.appendChild(playerSelectSpan);
-let computerSelect = resultContainer.appendChild(computerSelectSpan);
 let endResult = resultContainer.appendChild(endResultSpan);
 
 result.setAttribute('style', 'white-space: pre-line;');

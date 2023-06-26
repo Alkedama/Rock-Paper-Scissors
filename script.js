@@ -21,15 +21,15 @@ let computerSelection = () => {
     let mathRandom = Math.random();
     let random = Math.floor(mathRandom * (max - min + 1) + min);
 
-    // if (random === 1) {
-    //     return "Rock";
-    // } else if (random === 2) {
-    //     return "Paper";
-    // } else {
-    //     return "Scissors";
-    // }
+    if (random === 1) {
+        return "Rock";
+    } else if (random === 2) {
+        return "Paper";
+    } else {
+        return "Scissors";
+    }
 
-    return "Rock";
+    // return "Rock";
 
 }
 
@@ -51,6 +51,8 @@ let playerSelect = resultContainer.appendChild(playerSelectSpan);
 let computerSelect = resultContainer.appendChild(computerSelectSpan);
 let endResult = resultContainer.appendChild(endResultSpan);
 
+result.setAttribute('style', 'white-space: pre-line;');
+
 /* Counters */
 
 let winCounter = 0;
@@ -70,80 +72,32 @@ let playRound = (playerSelection, computerSelection) => {
         roundCounterSpan.appendChild(document.createElement("br"));
 
         if (playerSelection == "Rock" && computerSelection == "Rock") {
-            playerSelect.textContent = `You play ${playerSelection}`;
-            playerSelect.appendChild(document.createElement("br"));
-            computerSelect.textContent = `You Opponent plays ${computerSelection}`;
-            computerSelect.appendChild(document.createElement("br"));
-            result.textContent = "Tie \r\n";
+            result.textContent = `Tie \n You play ${playerSelection} \n Your Opponent plays ${computerSelection} \n`;
         } else if (playerSelection == "Rock" && computerSelection == "Paper") {
-            playerSelect.textContent = `You play ${playerSelection}`;
-            playerSelect.appendChild(document.createElement("br"));
-            computerSelect.textContent = `Opponent plays ${computerSelection}`;
-            computerSelect.appendChild(document.createElement("br"));
-            result.textContent = "You Lose";
-            result.appendChild(document.createElement("br"));
+            result.textContent = `You Lose \n You play ${playerSelection} \n Your Opponent plays ${computerSelection} \n`;
         } else if (playerSelection == "Rock" && computerSelection == "Scissors") {
-            playerSelect.textContent = `You play ${playerSelection}`;
-            playerSelect.appendChild(document.createElement("br"));
-            computerSelect.textContent = `Opponent plays ${computerSelection}`;
-            computerSelect.appendChild(document.createElement("br"));
-            result.textContent = "You Win";
-            result.appendChild(document.createElement("br"));
+            result.textContent = `You Win \n You play ${playerSelection} \n Your Opponent plays ${computerSelection} \n`;
         } else if (playerSelection == "Paper" && computerSelection == "Rock") {
-            playerSelect.textContent = `You play ${playerSelection}`;
-            playerSelect.appendChild(document.createElement("br"));
-            computerSelect.textContent = `Opponent plays ${computerSelection}`;
-            computerSelect.appendChild(document.createElement("br"));
-            result.textContent = "You Win";
-            result.appendChild(document.createElement("br"));
+            result.textContent = `You Win \n You play ${playerSelection} \n Your Opponent plays ${computerSelection} \n`;
         } else if (playerSelection == "Paper" && computerSelection == "Paper") {
-            playerSelect.textContent = `You play ${playerSelection}`;
-            playerSelect.appendChild(document.createElement("br"));
-            computerSelect.textContent = `Opponent plays ${computerSelection}`;
-            computerSelect.appendChild(document.createElement("br"));
-            result.textContent = "Tie";
-            result.appendChild(document.createElement("br"));
+            result.textContent = `Tie \n You play ${playerSelection} \n Your Opponent plays ${computerSelection} \n`;
         } else if (playerSelection == "Paper" && computerSelection == "Scissors") {
-            playerSelect.textContent = `You play ${playerSelection}`;
-            playerSelect.appendChild(document.createElement("br"));
-            computerSelect.textContent = `Opponent plays ${computerSelection}`;
-            computerSelect.appendChild(document.createElement("br"));
-            result.textContent = "You Lose";
-            result.appendChild(document.createElement("br"));
+            result.textContent = `You Lose \n You play ${playerSelection} \n Your Opponent plays ${computerSelection} \n`;
         } else if (playerSelection == "Scissors" && computerSelection == "Rock") {
-            playerSelect.textContent = `You play ${playerSelection}`;
-            playerSelect.appendChild(document.createElement("br"));
-            computerSelect.textContent = `Opponent plays ${computerSelection}`;
-            computerSelect.appendChild(document.createElement("br"));
-            result.textContent = "You Lose";
-            result.appendChild(document.createElement("br"));
+            result.textContent = `You Lose \n You play ${playerSelection} \n Your Opponent plays ${computerSelection} \n`;
         } else if (playerSelection == "Scissors" && computerSelection == "Paper") {
-            playerSelect.textContent = `You play ${playerSelection}`;
-            playerSelect.appendChild(document.createElement("br"));
-            computerSelect.textContent = `Opponent plays ${computerSelection}`;
-            computerSelect.appendChild(document.createElement("br"));
-            result.textContent = "You Win";
-            result.appendChild(document.createElement("br"));
+            result.textContent = `You Win \n You play ${playerSelection} \n Your Opponent plays ${computerSelection} \n`;
         } else if (playerSelection == "Scissors" && computerSelection == "Scissors") {
-            playerSelect.textContent = `You play ${playerSelection}`;
-            playerSelect.appendChild(document.createElement("br"));
-            computerSelect.textContent = `Opponent plays ${computerSelection}`;
-            computerSelect.appendChild(document.createElement("br"));
-            result.textContent = "Tie";
-            result.appendChild(document.createElement("br"));
+            result.textContent = `Tie \n You play ${playerSelection} \n Your Opponent plays ${computerSelection} \n`;
         } else {
-            playerSelect.textContent = `You play ${playerSelection}`;
-            playerSelect.appendChild(document.createElement("br"));
-            computerSelect.textContent = `Opponent plays ${computerSelection}`;
-            computerSelect.appendChild(document.createElement("br"));
-            result.textContent = "Invalid Input";
+            result.textContent = `Invalid Input \n You play ${playerSelection} \n Your Opponent plays ${computerSelection} \n`;
         }
 
-        if (result.textContent == "You Lose") {
+        if (result.textContent.includes("You Lose")) {
             loseCounter++;
-        } else if (result.textContent == "You Win") {
+        } else if (result.textContent.includes("You Win")) {
             winCounter++;
-        } else if (result.textContent == "Tie") {
+        } else if (result.textContent.includes("Tie")) {
             tieCounter++;
         }
 
@@ -151,22 +105,22 @@ let playRound = (playerSelection, computerSelection) => {
          and tied by ${tieCounter} times.`;
 
     } else {
-        if(counterSpan && counterSpan.parentNode && roundCounter === 5){
-        resultContainer.removeChild(counterSpan);
-        roundCounterSpan.textContent = `Round ${roundCounter}`;
-        roundCounterSpan.appendChild(document.createElement("br"));
+        if (counterSpan && counterSpan.parentNode && roundCounter === 5) {
+            resultContainer.removeChild(counterSpan);
+            roundCounterSpan.textContent = `Round ${roundCounter}`;
+            roundCounterSpan.appendChild(document.createElement("br"));
 
-        if (winCounter > loseCounter) {
-            endResult.textContent = `Congratulations! You won by ${winCounter} times, lost by ${loseCounter}
+            if (winCounter > loseCounter) {
+                endResult.textContent = `Congratulations! You won by ${winCounter} times, lost by ${loseCounter}
              times and tied by ${tieCounter} times.`;
-        } else if (loseCounter > winCounter) {
-            endResult.textContent = `Sorry! you lost by ${loseCounter} times, won by ${winCounter}
+            } else if (loseCounter > winCounter) {
+                endResult.textContent = `Sorry! you lost by ${loseCounter} times, won by ${winCounter}
              times and tied by ${tieCounter} times. Better luck next time.`;
-        } else if (loseCounter == winCounter) {
-            endResult.textContent = `You tied the game by ${tieCounter} times! won by ${winCounter} times
+            } else if (loseCounter == winCounter) {
+                endResult.textContent = `You tied the game by ${tieCounter} times! won by ${winCounter} times
              and lost by ${loseCounter} times. Try again.`;
+            }
         }
-    }
     }
 
 }
